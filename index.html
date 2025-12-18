@@ -3,225 +3,696 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seyrin tech</title>
-    <link rel="stylesheet" href="effet.css" />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link rel="icon" type="image/png" href="./pictures/favicon.png" />
+    <link rel="stylesheet" href="./image.png" />
+    <link rel="icon" type="image/png" href="./image.png" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, sans-serif;
+        overflow-x: hidden;
+        background: linear-gradient(500deg, #efefef, #015469, black);
+      }
+
+      /* Barre de progression */
+      .progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(500deg, #efefef, #015469, black);
+        z-index: 1000;
+        transition: width 0.1s ease;
+      }
+
+      /* Header */
+      header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(500deg, #efefef, #015469, black);
+        backdrop-filter: blur(10px);
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-top: 4px;
+      }
+
+      .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .logo img {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(500deg, #efefef, #015469, black);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      .logo-text {
+        color: rgb(0, 0, 0);
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+
+      nav {
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.3s;
+      }
+
+      nav a:hover {
+        color: #50e3c2;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 8rem 2rem 4rem;
+        color: white;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        font-size: 1.3rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        animation: fadeInUp 1s ease 0.3s backwards;
+      }
+
+      .hero-cta {
+        font-size: 1.2rem;
+        margin-top: 2rem;
+        animation: fadeInUp 1s ease 0.6s backwards;
+      }
+
+      /* Cards Section */
+      .cards-section {
+        padding: 4rem 2rem;
+        min-height: 100vh;
+      }
+
+      .card {
+        max-width: 900px;
+        margin: 8rem auto;
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        transition: all 0.8s ease;
+      }
+
+      .card.slide-left {
+        transform: translateX(100px);
+      }
+
+      .card.slide-right {
+        transform: translateX(-100px);
+      }
+
+      .card.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .card h2 {
+        color: #1e5a6e;
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .card p {
+        color: #555;
+        font-size: 1.2rem;
+        line-height: 1.8;
+      }
+
+      .card-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(500deg, #efefef, #015469, black);
+        color: white;
+        padding: 4rem 2rem 2rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1.5rem;
+        font-size: 1.5rem;
+      }
+
+      .footer-section a,
+      .footer-section p {
+        display: block;
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        margin-bottom: 0.8rem;
+        transition: color 0.3s;
+      }
+
+      .footer-section a:hover {
+        color: #50e3c2;
+      }
+
+      .team-button {
+        background: linear-gradient(500deg, #efefef, #015469, black);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      .team-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s ease;
+      }
+
+      .modal.active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background: white;
+        border-radius: 20px;
+        padding: 3rem;
+        max-width: 800px;
+        max-height: 80vh;
+        overflow-y: auto;
+        position: relative;
+        animation: slideUp 0.4s ease;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid #e0e0e0;
+      }
+
+      .modal-header h2 {
+        color: #1e5a6e;
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      .close-modal {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #888;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+
+      .close-modal:hover {
+        background: #f0f0f0;
+        color: #1e5a6e;
+      }
+
+      .modal-body {
+        color: #333;
+        line-height: 1.8;
+      }
+
+      .modal-body h3 {
+        color: #1e5a6e;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+      }
+
+      .modal-body p {
+        margin-bottom: 1rem;
+        font-size: 1.1rem;
+      }
+
+      .modal-body ul {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .modal-body li {
+        margin-bottom: 0.5rem;
+        font-size: 1.05rem;
+      }
+
+      .modal-footer {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        border-top: 2px solid #e0e0e0;
+        text-align: center;
+      }
+
+      .modal-footer p {
+        color: #666;
+        font-size: 0.95rem;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(50px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content {
+          font-size: 1.1rem;
+        }
+
+        nav {
+          gap: 1rem;
+        }
+
+        .card {
+          margin: 4rem auto;
+          padding: 2rem;
+        }
+
+        .modal-content {
+          margin: 1rem;
+          padding: 2rem;
+          max-height: 90vh;
+        }
+
+        .modal-header h2 {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+    <title>Seyrin - Agence Numérique</title>
   </head>
-
-  <div id="loading-screen">
-    <div class="loading-logo">
-      <img src="./pictures/logo.png" alt="Logo Seyrin" />
-    </div>
-    <div class="loading-text" id="loadingText"></div>
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
-    <div class="loading-percentage" id="loadingPercentage">0%</div>
-  </div>
-
   <body>
-    <header>
-      <nav class="navbar">
-        <div class="logo">
-          <img src="./pictures/logo.png" alt="" id="logo" /><span>Seyrin</span>
-        </div>
-        <div class="nav-links">
-          <a href="index.html" id="hme">Accueil</a>
-          <a href="about.html" id="abt">Services</a>
-          <a href="contact.html" id="cts">Contact</a>
-          <a href="https://docschecklist.infinityfree.me/index.php?i=1" id="cts"
-            >Documentation</a
-          >
+    <!-- Barre de progression -->
+    <div class="progress-bar" id="progressBar"></div>
 
-          <div class="settings-container">
-            <i
-              class="fas fa-cog settings-icon"
-              onclick="toggleParamsMenu()"
-            ></i>
-            <div id="param-menu" class="param-deroulant">
-              <button onclick="goToCon()">Se connecter</button>
-              <button onclick="goToDecon()">Créer un compte</button>
-              <button onclick="goToTabB()">Maps-Seyrin</button>
-            </div>
-          </div>
-        </div>
+    <!-- Header -->
+    <header>
+      <div class="logo-container">
+        <div class="logo"><img src="./image.png" alt="Logo Seyrin" /></div>
+        <div class="logo-text">Seyrin</div>
+      </div>
+      <nav>
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="#documentation">Documentation</a>
       </nav>
     </header>
 
-    <div class="ENT"><p>L'équipe Seyrin</p></div>
-
-    <div id="project-modal" class="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Détailes</h5>
-          <button id="close-modal" type="button">&times;</button>
-        </div>
-
-        <div class="modal-body">
-          <div class="modal-image-section">
-            <img id="modal-img" src="" alt="Photo du membre" />
-          </div>
-
-          <div class="modal-info-section">
-            <h3 id="modal-name"></h3>
-
-            <div class="modal-badges">
-              <span class="modal-badge" id="modal-poste-badge"></span>
-            </div>
-
-            <div class="modal-info-block">
-              <span class="modal-info-label">Prénom</span>
-              <p class="modal-info-text" id="modal-prenom"></p>
-            </div>
-
-            <div class="modal-info-block">
-              <span class="modal-info-label">Année de prise de fonction</span>
-              <p class="modal-info-text" id="modal-anneeFonction"></p>
-            </div>
-
-            <div class="modal-info-block">
-              <span class="modal-info-label">Compétences techniques</span>
-              <div class="modal-skills-container">
-                <div class="modal-skills-grid" id="modal-stacks"></div>
-              </div>
-            </div>
-
-            <div class="modal-social-links">
-              <a
-                href="https://www.linkedin.com"
-                class="social-btn btn-linkedin"
-                id="modal-linkedin"
-                target="_blank"
-              >
-                <i class="fab fa-linkedin"></i>
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/Ezechiel-kouakou"
-                class="social-btn btn-github"
-                id="modal-github"
-                target="_blank"
-              >
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+      <h1>Bienvenue chez Seyrin</h1>
+      <div class="hero-content">
+        <p>
+          <strong>Seyrin</strong> est une agence numérique spécialisée dans le
+          conseil, le développement d'applications web et mobiles et SaaS.
+        </p>
+        <p>
+          Nous sommes présents sur le marché depuis
+          <strong>Octobre 2025</strong>.
+        </p>
       </div>
-    </div>
-    <!-- developpement de la partie de messaging et mailling -->
-    <div class="section-message">
-      <div class="compteur">0</div>
-
-      <i
-        class="fas fa-mail-bulk message-icon"
-        onclick="toggleMessageMenu()"
-      ></i>
-      <div class="message-menu" id="messages-menus">
-        <div class="menu-btn-message" style="position: relative">
-          <div class="compteurs-message">0</div>
-          <button class="menu-btn" onclick="openMessageView()">
-            <i class="fas fa-comments"></i>
-          </button>
-        </div>
-        <div class="menu-btn-mail" style="position: relative">
-          <div class="compteurs-message">0</div>
-          <button class="menu-btn" onclick="openEmailView()">
-            <i class="fas fa-envelope"></i>
-          </button>
-        </div>
-        <div class="menu-btn-chat" style="position: relative">
-          <div class="compteurs-message">0</div>
-          <button class="menu-btn" onclick="openChatbotView()">
-            <i class="fas fa-robot"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- corps messages -->
-
-    <div class="full-view" id="messageView">
-      <div class="view-header">
-        <button class="back-button" onclick="closeMessageView()">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h2>Messages</h2>
-        <button class="header-action" onclick="showComposeMessage()">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-      <div class="view-content" id="messageViewContent">
-        <!-- contenus dynamique php que je dois rajouter doit se faire ici-->
-      </div>
-    </div>
-
-    <!-- corps Email -->
-
-    <div class="full-view" id="emailView">
-      <div class="view-header">
-        <button class="back-button" onclick="closeEmailView()">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h2>Email</h2>
-        <button class="header-action" onclick="showComposeEmail()">
-          <i class="fas fa-plus"></i>
-        </button>
-      </div>
-      <div class="view-content" id="emailViewContent">
-        <!-- le contenus dynamique php que je dois rajouter doit se faire ici-->
-      </div>
-    </div>
-
-    <!-- le corps du chatbot -->
-    <div class="full-view" id="chatbotView">
-      <div class="view-header">
-        <button class="back-button" onclick="closeChatbotView()">
-          <i class="fas fa-arrow-left"></i>
-        </button>
-        <h2>Chatbot</h2>
-      </div>
-
-      <div class="view-content chatbot-content" id="chatbotViewContent">
-        <div class="chat-container" id="chatMessages"></div>
-        <div class="chat-input-wrapper">
-          <textarea
-            id="chatInput"
-            placeholder="Posez votre question..."
-          ></textarea>
-          <button class="send-chat-btn" onclick="sendChatMessage()">
-            <i class="fas fa-paper-plane"></i>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <section class="section" id="projets">
-      <div class="row">
-        <div class="col-12"></div>
-      </div>
-
-      <div class="projects-container">
-        <div class="row" id="project-list"></div>
+      <div class="hero-cta">
+        <p>
+          Vous voulez en savoir plus ? Prenez donc plaisir 😊 à scroller vers le
+          bas 👇
+        </p>
       </div>
     </section>
-    <script src="effet.js"></script>
-    <script src="commun.js"></script>
-    <script src="accueil.js"></script>
-    <script src="index.js"></script>
-    <script src="debug.js"></script>
+
+    <!-- Cards Section -->
+    <section class="cards-section" id="services">
+      <div class="card slide-right" data-animation="slide-right">
+        <div class="card-icon">💼</div>
+        <h2>Conseil Stratégique</h2>
+        <p>
+          Nous accompagnons nos clients dans leur transformation digitale en
+          proposant des solutions innovantes et adaptées à leurs besoins. Notre
+          expertise en conseil stratégique vous permet de prendre les meilleures
+          décisions pour votre entreprise et d'optimiser vos processus métier
+          pour une efficacité maximale.
+        </p>
+      </div>
+
+      <div class="card slide-left" data-animation="slide-left">
+        <div class="card-icon">🚀</div>
+        <h2>Développement Web & Mobile</h2>
+        <p>
+          Notre équipe de développeurs passionnés crée des applications web et
+          mobiles performantes, intuitives et évolutives. Nous utilisons les
+          dernières technologies pour construire des solutions robustes qui
+          répondent aux exigences du marché moderne et offrent une expérience
+          utilisateur exceptionnelle.
+        </p>
+      </div>
+
+      <div class="card slide-right" data-animation="slide-right">
+        <div class="card-icon">☁️</div>
+        <h2>Solutions SaaS</h2>
+        <p>
+          Nous concevons et déployons des solutions SaaS personnalisées qui
+          permettent à votre entreprise de se développer efficacement. Notre
+          approche cloud-native garantit scalabilité, sécurité et performance
+          pour accompagner votre croissance sur le long terme avec des outils
+          adaptés à vos besoins spécifiques.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Seyrin</h3>
+          <p>Agence numérique innovante</p>
+          <p>Depuis Octobre 2025</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Liens rapides</h3>
+          <a href="#accueil">Accueil</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+          <a href="#documentation">Documentation</a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Notre équipe</h3>
+          <a
+            href="https://seyrinwebsite.infinityfreeapp.com/index.php?i=1"
+            class="team-button"
+            target="_blank"
+          >
+            Voir notre équipe dynamique
+          </a>
+        </div>
+
+        <div class="footer-section">
+          <h3>Informations légales</h3>
+          <a href="#" id="confidentialiteLink">Confidentialité</a>
+          <a href="#mentions">Mentions légales</a>
+          <a href="#aide">Besoin d'aide ?</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 Seyrin. Tous droits réservés.</p>
+      </div>
+    </footer>
+
+    <!-- Modal Confidentialité -->
+    <div id="confidentialiteModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>🔒 Politique de Confidentialité</h2>
+          <button class="close-modal" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Dernière mise à jour : Décembre 2025</strong></p>
+
+          <h3>1. Introduction</h3>
+          <p>
+            Chez Seyrin, nous prenons très au sérieux la protection de vos
+            données personnelles. Cette politique de confidentialité vous
+            informe sur la manière dont nous collectons, utilisons et protégeons
+            vos informations.
+          </p>
+
+          <h3>2. Données collectées</h3>
+          <p>Nous pouvons collecter les types de données suivants :</p>
+          <ul>
+            <li>Informations d'identification (nom, prénom, email)</li>
+            <li>Données de connexion et d'utilisation</li>
+            <li>Informations techniques (adresse IP, type de navigateur)</li>
+            <li>Données de communication avec nos services</li>
+          </ul>
+
+          <h3>3. Utilisation des données</h3>
+          <p>Vos données sont utilisées pour :</p>
+          <ul>
+            <li>Fournir et améliorer nos services</li>
+            <li>Personnaliser votre expérience utilisateur</li>
+            <li>Communiquer avec vous concernant nos services</li>
+            <li>Assurer la sécurité de notre plateforme</li>
+            <li>Respecter nos obligations légales</li>
+          </ul>
+
+          <h3>4. Protection des données</h3>
+          <p>
+            Nous mettons en œuvre des mesures de sécurité techniques et
+            organisationnelles appropriées pour protéger vos données contre tout
+            accès non autorisé, modification, divulgation ou destruction.
+          </p>
+
+          <h3>5. Vos droits</h3>
+          <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+          <ul>
+            <li>Droit d'accès à vos données personnelles</li>
+            <li>Droit de rectification de vos données</li>
+            <li>Droit à l'effacement (droit à l'oubli)</li>
+            <li>Droit à la limitation du traitement</li>
+            <li>Droit à la portabilité de vos données</li>
+            <li>Droit d'opposition au traitement</li>
+          </ul>
+
+          <h3>6. Cookies</h3>
+          <p>
+            Notre site utilise des cookies pour améliorer votre expérience. Vous
+            pouvez gérer vos préférences de cookies dans les paramètres de votre
+            navigateur.
+          </p>
+
+          <h3>7. Partage des données</h3>
+          <p>
+            Nous ne vendons pas vos données personnelles. Nous pouvons les
+            partager uniquement avec des prestataires de services de confiance
+            qui nous aident à exploiter notre site et nos services, sous réserve
+            qu'ils acceptent de garder ces informations confidentielles.
+          </p>
+
+          <h3>8. Contact</h3>
+          <p>
+            Pour toute question concernant cette politique de confidentialité ou
+            pour exercer vos droits, contactez-nous à :
+            <strong>contact@seyrin.com</strong>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <p>
+            En utilisant nos services, vous acceptez cette politique de
+            confidentialité.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Barre de progression
+      function updateProgressBar() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent =
+          (scrollTop / (documentHeight - windowHeight)) * 100;
+        document.getElementById("progressBar").style.width =
+          scrollPercent + "%";
+      }
+
+      // Animation des cartes au scroll
+      function animateCards() {
+        const cards = document.querySelectorAll(".card");
+
+        cards.forEach((card) => {
+          const cardTop = card.getBoundingClientRect().top;
+          const windowHeight = window.innerHeight;
+
+          if (cardTop < windowHeight * 0.8) {
+            card.classList.add("visible");
+          }
+        });
+      }
+
+      // Modal Confidentialité
+      const modal = document.getElementById("confidentialiteModal");
+      const confidentialiteLink = document.getElementById(
+        "confidentialiteLink"
+      );
+      const closeModal = document.getElementById("closeModal");
+
+      // Ouvrir la modal
+      confidentialiteLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden"; // Empêcher le scroll
+      });
+
+      // Fermer la modal avec le bouton
+      closeModal.addEventListener("click", () => {
+        modal.classList.remove("active");
+        document.body.style.overflow = "auto"; // Réactiver le scroll
+      });
+
+      // Fermer la modal en cliquant en dehors
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Fermer la modal avec la touche Échap
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal.classList.contains("active")) {
+          modal.classList.remove("active");
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Event listeners
+      window.addEventListener("scroll", () => {
+        updateProgressBar();
+        animateCards();
+      });
+
+      // Initial check
+      window.addEventListener("load", () => {
+        updateProgressBar();
+        animateCards();
+      });
+
+      // Smooth scroll pour les liens
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          // Ne pas empêcher le comportement par défaut pour les liens qui ouvrent la modal
+          if (
+            href === "#confidentialite" ||
+            this.id === "confidentialiteLink"
+          ) {
+            return;
+          }
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
   </body>
-  <footer>
-    <p>
-      &#xA9;<strong><a href="index.html">SEYRINWEB</a></strong> |
-      <a href="https://docschecklist.infinityfree.me/index.php?i=1">Terms</a> |
-      Aucune donnée à caractère personnelle n'est exploité par Seyrin
-    </p>
-  </footer>
 </html>
