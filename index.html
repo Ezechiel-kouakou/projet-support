@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seyrin tech</title>
+    <link rel="stylesheet" href="effet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="icon" type="image/png" href="./pictures/favicon.png" />
+  </head>
+
+  <div id="loading-screen">
+    <div class="loading-logo">
+      <img src="./pictures/logo.png" alt="Logo Seyrin" />
+    </div>
+    <div class="loading-text" id="loadingText"></div>
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="loading-percentage" id="loadingPercentage">0%</div>
+  </div>
+
+  <body>
+    <header>
+      <nav class="navbar">
+        <div class="logo">
+          <img src="./pictures/logo.png" alt="" id="logo" /><span>Seyrin</span>
+        </div>
+        <div class="nav-links">
+          <a href="index.html" id="hme">Accueil</a>
+          <a href="about.html" id="abt">Services</a>
+          <a href="contact.html" id="cts">Contact</a>
+          <a href="https://docschecklist.infinityfree.me/index.php?i=1" id="cts"
+            >Documentation</a
+          >
+
+          <div class="settings-container">
+            <i
+              class="fas fa-cog settings-icon"
+              onclick="toggleParamsMenu()"
+            ></i>
+            <div id="param-menu" class="param-deroulant">
+              <button onclick="goToCon()">Se connecter</button>
+              <button onclick="goToDecon()">Créer un compte</button>
+              <button onclick="goToTabB()">Maps-Seyrin</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="ENT"><p>L'équipe Seyrin</p></div>
+
+    <div id="project-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Détailes</h5>
+          <button id="close-modal" type="button">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-image-section">
+            <img id="modal-img" src="" alt="Photo du membre" />
+          </div>
+
+          <div class="modal-info-section">
+            <h3 id="modal-name"></h3>
+
+            <div class="modal-badges">
+              <span class="modal-badge" id="modal-poste-badge"></span>
+            </div>
+
+            <div class="modal-info-block">
+              <span class="modal-info-label">Prénom</span>
+              <p class="modal-info-text" id="modal-prenom"></p>
+            </div>
+
+            <div class="modal-info-block">
+              <span class="modal-info-label">Année de prise de fonction</span>
+              <p class="modal-info-text" id="modal-anneeFonction"></p>
+            </div>
+
+            <div class="modal-info-block">
+              <span class="modal-info-label">Compétences techniques</span>
+              <div class="modal-skills-container">
+                <div class="modal-skills-grid" id="modal-stacks"></div>
+              </div>
+            </div>
+
+            <div class="modal-social-links">
+              <a
+                href="https://www.linkedin.com"
+                class="social-btn btn-linkedin"
+                id="modal-linkedin"
+                target="_blank"
+              >
+                <i class="fab fa-linkedin"></i>
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/Ezechiel-kouakou"
+                class="social-btn btn-github"
+                id="modal-github"
+                target="_blank"
+              >
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- developpement de la partie de messaging et mailling -->
+    <div class="section-message">
+      <div class="compteur">0</div>
+
+      <i
+        class="fas fa-mail-bulk message-icon"
+        onclick="toggleMessageMenu()"
+      ></i>
+      <div class="message-menu" id="messages-menus">
+        <div class="menu-btn-message" style="position: relative">
+          <div class="compteurs-message">0</div>
+          <button class="menu-btn" onclick="openMessageView()">
+            <i class="fas fa-comments"></i>
+          </button>
+        </div>
+        <div class="menu-btn-mail" style="position: relative">
+          <div class="compteurs-message">0</div>
+          <button class="menu-btn" onclick="openEmailView()">
+            <i class="fas fa-envelope"></i>
+          </button>
+        </div>
+        <div class="menu-btn-chat" style="position: relative">
+          <div class="compteurs-message">0</div>
+          <button class="menu-btn" onclick="openChatbotView()">
+            <i class="fas fa-robot"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- corps messages -->
+
+    <div class="full-view" id="messageView">
+      <div class="view-header">
+        <button class="back-button" onclick="closeMessageView()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2>Messages</h2>
+        <button class="header-action" onclick="showComposeMessage()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="view-content" id="messageViewContent">
+        <!-- contenus dynamique php que je dois rajouter doit se faire ici-->
+      </div>
+    </div>
+
+    <!-- corps Email -->
+
+    <div class="full-view" id="emailView">
+      <div class="view-header">
+        <button class="back-button" onclick="closeEmailView()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2>Email</h2>
+        <button class="header-action" onclick="showComposeEmail()">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="view-content" id="emailViewContent">
+        <!-- le contenus dynamique php que je dois rajouter doit se faire ici-->
+      </div>
+    </div>
+
+    <!-- le corps du chatbot -->
+    <div class="full-view" id="chatbotView">
+      <div class="view-header">
+        <button class="back-button" onclick="closeChatbotView()">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2>Chatbot</h2>
+      </div>
+
+      <div class="view-content chatbot-content" id="chatbotViewContent">
+        <div class="chat-container" id="chatMessages"></div>
+        <div class="chat-input-wrapper">
+          <textarea
+            id="chatInput"
+            placeholder="Posez votre question..."
+          ></textarea>
+          <button class="send-chat-btn" onclick="sendChatMessage()">
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <section class="section" id="projets">
+      <div class="row">
+        <div class="col-12"></div>
+      </div>
+
+      <div class="projects-container">
+        <div class="row" id="project-list"></div>
+      </div>
+    </section>
+    <script src="effet.js"></script>
+    <script src="commun.js"></script>
+    <script src="accueil.js"></script>
+    <script src="index.js"></script>
+    <script src="debug.js"></script>
+  </body>
+  <footer>
+    <p>
+      &#xA9;<strong><a href="index.html">SEYRINWEB</a></strong> |
+      <a href="https://docschecklist.infinityfree.me/index.php?i=1">Terms</a> |
+      Aucune donnée à caractère personnelle n'est exploité par Seyrin
+    </p>
+  </footer>
+</html>
