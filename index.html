@@ -6,129 +6,150 @@
     <link rel="icon" type="image/png" href="./image.png" />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <style>
-        /* --- Styles de base --- */
+        /* --- Styles de base & Design System --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             overflow-x: hidden;
             background: linear-gradient(500deg, #efefef, #015469, black);
             color: #333;
+            scroll-behavior: smooth;
         }
 
         .progress-bar {
             position: fixed; top: 0; left: 0; width: 0%; height: 4px;
             background: linear-gradient(90deg, #50e3c2, #015469);
-            z-index: 1001; transition: width 0.1s ease;
+            z-index: 2001; transition: width 0.1s ease;
         }
 
         header {
             position: fixed; top: 0; width: 100%;
-            background: rgba(1, 84, 105, 0.85);
-            backdrop-filter: blur(12px);
-            padding: 1rem 2rem;
+            background: rgba(1, 84, 105, 0.8);
+            backdrop-filter: blur(15px);
+            padding: 0.8rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            z-index: 1000; box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+            margin-top: 4px;
         }
 
         .logo-container { display: flex; align-items: center; gap: 1rem; }
         .logo img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #50e3c2; }
-        .logo-text { color: white; font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; }
+        .logo-text { color: white; font-size: 1.7rem; font-weight: 800; letter-spacing: -1px; }
 
         nav { display: flex; gap: 1.5rem; align-items: center; }
-        nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+        nav a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 0.5rem; }
         nav a:hover { color: #50e3c2; }
 
         .doc-nav-btn {
             background: #50e3c2; color: #015469 !important;
             padding: 0.6rem 1.2rem; border-radius: 12px;
             font-weight: 700; cursor: pointer; transition: 0.3s;
+            text-decoration: none;
         }
         .doc-nav-btn:hover { transform: scale(1.05); background: white; }
 
-        /* --- Hero --- */
+        /* --- Hero Section --- */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             text-align: center; padding: 4rem 2rem; color: white;
         }
         .hero h1 { font-size: 4rem; margin-bottom: 1.5rem; letter-spacing: -2px; }
-        .hero-content { max-width: 700px; font-size: 1.2rem; opacity: 0.9; line-height: 1.6; }
-        .hero-cta { margin-top: 3rem; display: flex; align-items: center; gap: 10px; font-weight: 500; }
-        .hero-cta i { font-size: 1.5rem; animation: bounce 2s infinite; }
+        .hero-content { max-width: 800px; font-size: 1.25rem; line-height: 1.8; opacity: 0.9; }
+        .hero-cta { margin-top: 4rem; display: flex; flex-direction: column; align-items: center; gap: 10px; font-weight: 500; opacity: 0.7; }
+        .hero-cta i { font-size: 2rem; animation: bounce 2s infinite; }
 
         @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
 
-        /* --- Cards --- */
+        /* --- Cards Section --- */
         .cards-section { padding: 4rem 2rem; }
         .card {
-            max-width: 800px; margin: 6rem auto; background: white;
+            max-width: 900px; margin: 8rem auto; background: white;
             border-radius: 24px; padding: 3.5rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
             opacity: 0; transition: 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .card.slide-left { transform: translateX(80px); }
-        .card.slide-right { transform: translateX(-80px); }
+        .card.slide-left { transform: translateX(100px); }
+        .card.slide-right { transform: translateX(-100px); }
         .card.visible { opacity: 1; transform: translateX(0); }
-        .card i { font-size: 3.5rem; color: #015469; margin-bottom: 1.5rem; display: block; }
-        .card h2 { color: #015469; font-size: 2.2rem; margin-bottom: 1rem; }
-        .card p { color: #666; font-size: 1.1rem; line-height: 1.7; }
+        .card i.main-icon { font-size: 4rem; color: #015469; margin-bottom: 1.5rem; display: block; }
+        .card h2 { color: #1e5a6e; font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .card p { color: #555; font-size: 1.2rem; line-height: 1.8; }
 
-        /* --- Team --- */
-        .team-section { padding: 6rem 2rem; background: rgba(255,255,255,0.05); }
-        .team-section-title { text-align: center; color: white; font-size: 3rem; margin-bottom: 4rem; }
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
-        .team-card { background: white; border-radius: 24px; padding: 2.5rem; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
-        .team-card:hover { transform: translateY(-10px); }
-        .team-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; }
-        .team-name { font-size: 1.4rem; font-weight: 700; color: #015469; }
-        .team-role { display: inline-block; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 50px; margin: 0.5rem 0 1.5rem; font-weight: 600; }
+        /* --- Team Section --- */
+        .team-section { padding: 6rem 2rem; }
+        .team-section-title { text-align: center; color: white; font-size: 3rem; font-weight: 800; margin-bottom: 4rem; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 1300px; margin: 0 auto; }
+        .team-card { background: white; border-radius: 24px; padding: 2.5rem; display: flex; flex-direction: column; align-items: center; text-align: center; transition: 0.4s; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        .team-avatar { width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; margin-bottom: 1rem; }
+        .team-name { font-size: 1.3rem; font-weight: 700; color: #1e5a6e; margin-bottom: 0.5rem; }
+        .team-role { font-size: 0.85rem; font-weight: 700; padding: 0.4rem 1rem; border-radius: 50px; margin-bottom: 1.5rem; text-transform: uppercase; }
+        
         .role-dev { background: #e0f2fe; color: #0369a1; }
         .role-infra { background: #fef3c7; color: #92400e; }
         .role-support { background: #f3e8ff; color: #6b21a8; }
         .role-chef { background: #dcfce7; color: #166534; }
-        .task-list { text-align: left; margin-bottom: 2rem; }
-        .task-list li { list-style: none; font-size: 0.9rem; color: #555; margin-bottom: 0.6rem; display: flex; gap: 8px; align-items: center; }
-        .task-list li i { color: #50e3c2; font-size: 1.1rem; }
+
+        .task-list { text-align: left; width: 100%; margin-bottom: 2rem; }
+        .task-list li { list-style: none; font-size: 0.95rem; color: #555; padding: 0.4rem 0; display: flex; align-items: center; gap: 10px; }
+        .task-list li i { color: #015469; font-size: 1.1rem; }
 
         .voir-doc-btn { 
-            background: #015469; color: white; border: none; padding: 0.8rem; 
+            background: linear-gradient(135deg, #015469, #1e8a9e); color: white; border: none; padding: 0.9rem; 
             border-radius: 12px; width: 100%; cursor: pointer; font-weight: 600; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s;
+            display: flex; align-items: center; justify-content: center; gap: 10px; transition: 0.3s;
         }
-        .voir-doc-btn:hover { background: #0282a1; }
+        .voir-doc-btn:hover { background: #015469; transform: scale(1.02); }
 
-        /* --- Modals & Documentation --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        /* --- Modals --- */
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); transition: 0.3s; }
         .modal.active { display: flex; justify-content: center; align-items: center; }
-        .modal-content { background: #f8fafc; border-radius: 30px; width: 90%; max-width: 900px; max-height: 85vh; overflow-y: auto; padding: 3rem; position: relative; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
-        .modal-header h2 { display: flex; align-items: center; gap: 12px; color: #015469; }
-        .close-modal { background: #f1f5f9; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+        .modal-content { background: #fdfdfd; border-radius: 30px; width: 92%; max-width: 900px; max-height: 88vh; overflow-y: auto; padding: 3rem; position: relative; animation: slideUp 0.4s ease; box-shadow: 0 25px 70px rgba(0,0,0,0.5); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #f1f5f9; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+        .modal-header h2 { color: #1e5a6e; font-size: 1.8rem; display: flex; align-items: center; gap: 12px; }
+        .close-modal { background: #f1f5f9; border: none; font-size: 1.5rem; cursor: pointer; width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .close-modal:hover { background: #e2e8f0; color: #ef4444; }
+
+        /* --- Doc Styling --- */
+        .modal-body h3 { color: #1e5a6e; margin: 2rem 0 1rem; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .modal-body h4 { color: #015469; margin: 1.5rem 0 0.5rem; font-size: 1.1rem; }
+        .modal-body p { margin-bottom: 1rem; line-height: 1.8; color: #444; }
+        .modal-body ul { margin-left: 1.2rem; margin-bottom: 1.5rem; }
+        .modal-body li { margin-bottom: 0.6rem; list-style: none; display: flex; align-items: center; gap: 10px; }
+        .modal-body li i { color: #50e3c2; font-size: 1.1rem; }
+
+        .ctag { background: #e0f2fe; color: #0369a1; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 800; font-size: 0.8rem; margin-right: 8px; }
+        .doc-block { background: #f8fafc; border-left: 5px solid #015469; padding: 1.5rem; border-radius: 0 15px 15px 0; margin: 1.5rem 0; }
+        .doc-block code { display: block; background: #01161d; color: #50e3c2; padding: 1rem; border-radius: 8px; font-family: 'Fira Code', monospace; font-size: 0.9rem; margin-top: 0.8rem; }
+
+        .member-banner { display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem; border-radius: 20px; margin-bottom: 2rem; }
+        .avatar-lg { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; }
 
         /* Stack Grid */
-        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-        .stack-item { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; }
-        .stack-item i { font-size: 2.5rem; color: #015469; margin-bottom: 0.8rem; display: block; }
-        .stack-item span { font-weight: 700; font-size: 0.9rem; color: #334155; }
-
-        .doc-block { background: #015469; color: white; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; font-family: 'Fira Code', monospace; font-size: 0.9rem; position: relative; }
-        .doc-block::before { content: "Terminal"; position: absolute; top: -10px; left: 20px; background: #50e3c2; color: #015469; padding: 2px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0; }
+        .stack-item { background: white; padding: 1.2rem; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; transition: 0.3s; }
+        .stack-item:hover { border-color: #50e3c2; transform: translateY(-5px); }
+        .stack-item i { font-size: 2rem; color: #015469; margin-bottom: 0.5rem; display: block; }
+        .stack-item span { font-weight: 700; font-size: 0.85rem; color: #334155; }
 
         /* --- Footer --- */
         footer { background: #01161d; color: white; padding: 5rem 2rem 2rem; }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; }
-        .footer-section h3 { font-size: 1.4rem; margin-bottom: 1.5rem; color: #50e3c2; }
-        .footer-section a { color: #cbd5e1; text-decoration: none; display: block; margin-bottom: 0.8rem; transition: 0.3s; }
+        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 4rem; }
+        .footer-section h3 { margin-bottom: 1.5rem; font-size: 1.5rem; color: #50e3c2; }
+        .footer-section a, .footer-section p { color: rgba(255,255,255,0.7); text-decoration: none; margin-bottom: 0.8rem; display: block; transition: 0.3s; }
         .footer-section a:hover { color: white; padding-left: 5px; }
 
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
         @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .logo-text { display: none; }
             .hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
             .modal-content { padding: 1.5rem; }
         }
     </style>
-    <title>Seyrin | Agence Numérique</title>
+    <title>Seyrin - Agence Numérique</title>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -136,41 +157,44 @@
     <header>
         <div class="logo-container">
             <div class="logo"><img src="./image.png" alt="Logo" /></div>
-            <div class="logo-text">SEYRIN</div>
+            <div class="logo-text">Seyrin</div>
         </div>
         <nav>
             <a href="#accueil"><i class="ph ph-house"></i> Accueil</a>
-            <a href="#services"><i class="ph ph-cube"></i> Services</a>
-            <a href="#equipe"><i class="ph ph-users"></i> Équipe</a>
+            <a href="#services"><i class="ph ph-briefcase"></i> Services</a>
+            <a href="#equipe"><i class="ph ph-users-three"></i> Équipe</a>
+            <a href="#contact"><i class="ph ph-envelope"></i> Contact</a>
             <a href="#" class="doc-nav-btn" id="docNavBtn"><i class="ph ph-file-text"></i> Documentation</a>
         </nav>
     </header>
 
     <section class="hero" id="accueil">
-        <h1>Innover pour demain.</h1>
+        <h1>Bienvenue chez Seyrin</h1>
         <div class="hero-content">
-            <p><strong>Seyrin</strong> est votre partenaire numérique spécialisé en conseil stratégique et déploiement de solutions SaaS haute performance.</p>
+            <p><strong>Seyrin</strong> est une agence numérique spécialisée dans le conseil, le développement d'applications web et mobiles et SaaS.</p>
+            <p>Nous façonnons l'avenir numérique depuis <strong>Octobre 2025</strong>.</p>
         </div>
         <div class="hero-cta">
-            <i class="ph ph-mouse"></i> Scrollez pour explorer
+            <i class="ph ph-caret-double-down"></i>
+            <span>Découvrez notre expertise</span>
         </div>
     </section>
 
     <section class="cards-section" id="services">
         <div class="card slide-right">
-            <i class="ph ph-chart-line-up"></i>
+            <i class="ph ph-strategy main-icon"></i>
             <h2>Conseil Stratégique</h2>
-            <p>Nous transformons vos défis en opportunités numériques grâce à un accompagnement sur mesure et une expertise métier pointue.</p>
+            <p>Nous accompagnons nos clients dans leur transformation digitale en proposant des solutions innovantes et adaptées à leurs besoins. Notre expertise vous permet de prendre les meilleures décisions pour votre entreprise.</p>
         </div>
         <div class="card slide-left">
-            <i class="ph ph-code"></i>
+            <i class="ph ph-rocket-launch main-icon"></i>
             <h2>Développement Web & Mobile</h2>
-            <p>Conception d'interfaces modernes et performantes utilisant les stacks les plus robustes du marché (Node.js, React, Swift).</p>
+            <p>Notre équipe crée des applications performantes, intuitives et évolutives. Nous utilisons les dernières technologies pour construire des solutions robustes qui offrent une expérience utilisateur exceptionnelle.</p>
         </div>
         <div class="card slide-right">
-            <i class="ph ph-cloud-arrow-up"></i>
+            <i class="ph ph-cloud-check main-icon"></i>
             <h2>Solutions SaaS</h2>
-            <p>Déploiement d'architectures cloud-native scalables sur Azure et AWS pour garantir une disponibilité maximale de vos services.</p>
+            <p>Nous concevons des solutions SaaS personnalisées cloud-native garantissant scalabilité, sécurité et performance pour accompagner votre croissance sur le long terme.</p>
         </div>
     </section>
 
@@ -178,137 +202,207 @@
         <h2 class="team-section-title">Notre Équipe</h2>
         <div class="team-grid">
             <div class="team-card">
-                <div class="team-avatar" style="background: linear-gradient(135deg, #015469, #50e3c2)">FR</div>
+                <div class="team-avatar" style="background: linear-gradient(135deg, #1e5a6e, #50e3c2)">FR</div>
                 <div class="team-name">FRA</div>
-                <span class="team-role role-dev">Lead Developer</span>
+                <span class="team-role role-dev">Développeur</span>
                 <ul class="task-list">
-                    <li><i class="ph ph-check-circle"></i> Politique RGPD</li>
-                    <li><i class="ph ph-check-circle"></i> Architecture API</li>
-                    <li><i class="ph ph-check-circle"></i> Intégrité Serveur</li>
+                    <li><i class="ph ph-shield-check"></i> Politique de confidentialité (C11)</li>
+                    <li><i class="ph ph-browser"></i> Amélioration site vitrine (C12)</li>
+                    <li><i class="ph ph-activity"></i> Tests d'intégrité serveur (C4)</li>
+                    <li><i class="ph ph-plugs-connected"></i> Création des API (C12)</li>
+                    <li><i class="ph ph-globe"></i> Nom de domaine (C17)</li>
                 </ul>
-                <button class="voir-doc-btn" onclick="openMemberDoc('fra')"><i class="ph ph-book-open"></i> Portfolio Technique</button>
+                <button class="voir-doc-btn" onclick="openMemberDoc('fra')"><i class="ph ph-file-search"></i> Voir docu</button>
             </div>
 
             <div class="team-card">
-                <div class="team-avatar" style="background: linear-gradient(135deg, #166534, #50e3c2)">KO</div>
+                <div class="team-avatar" style="background: linear-gradient(135deg, #915018, #f5a623)">RA</div>
+                <div class="team-name">Rayan</div>
+                <span class="team-role role-infra">Infrastructure</span>
+                <ul class="task-list">
+                    <li><i class="ph ph-lock-key"></i> Confidentialité (C11)</li>
+                    <li><i class="ph ph-users"></i> Gestion GLPI (C18)</li>
+                    <li><i class="ph ph-hard-drives"></i> Tests serveur (C4)</li>
+                    <li><i class="ph ph-cloud-arrow-up"></i> Déploiement Azure (C5/C17)</li>
+                </ul>
+                <button class="voir-doc-btn" onclick="openMemberDoc('rayan')"><i class="ph ph-file-search"></i> Voir docu</button>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar" style="background: linear-gradient(135deg, #4a35b0, #8c7cf0)">KG</div>
+                <div class="team-name">Kylian Gabriel Henri</div>
+                <span class="team-role role-support">Support</span>
+                <ul class="task-list">
+                    <li><i class="ph ph-chart-bar"></i> Google Analytics (C11)</li>
+                    <li><i class="ph ph-identification-card"></i> Rôles GLPI (C1)</li>
+                    <li><i class="ph ph-desktop-tower"></i> Déploiement agent (C1)</li>
+                    <li><i class="ph ph-key"></i> HTTPS & Azure (C17)</li>
+                </ul>
+                <button class="voir-doc-btn" onclick="openMemberDoc('kylian')"><i class="ph ph-file-search"></i> Voir docu</button>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar" style="background: linear-gradient(135deg, #0d6e4b, #1dc87a)">KO</div>
                 <div class="team-name">Kouakou</div>
                 <span class="team-role role-chef">Chef de Projet</span>
                 <ul class="task-list">
-                    <li><i class="ph ph-check-circle"></i> Migration Cloud Azure</li>
-                    <li><i class="ph ph-check-circle"></i> Stratégie SEO</li>
-                    <li><i class="ph ph-check-circle"></i> Gestion Sauvegardes</li>
+                    <li><i class="ph ph-projector-screen-chart"></i> Pilotage (C12)</li>
+                    <li><i class="ph ph-database"></i> Migration données (C5)</li>
+                    <li><i class="ph ph-shield-star"></i> Intégrité & API (C4/C12)</li>
+                    <li><i class="ph ph-cloud-sun"></i> Hébergement Azure (C17)</li>
                 </ul>
-                <button class="voir-doc-btn" onclick="openMemberDoc('kouakou')"><i class="ph ph-book-open"></i> Roadmap Projet</button>
+                <button class="voir-doc-btn" onclick="openMemberDoc('kouakou')"><i class="ph ph-file-search"></i> Voir docu</button>
             </div>
         </div>
     </section>
 
-    <footer>
+    <footer id="contact">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Seyrin</h3>
-                <p>Expertise numérique & Transformation Cloud.</p>
+                <p>Agence numérique innovante</p>
+                <p><i class="ph ph-calendar-check"></i> Depuis Octobre 2025</p>
             </div>
             <div class="footer-section">
-                <h3>Navigation</h3>
+                <h3>Liens rapides</h3>
                 <a href="#accueil">Accueil</a>
                 <a href="#services">Services</a>
-                <a href="#equipe">L'équipe</a>
+                <a href="#equipe">Équipe</a>
+                <a href="#" id="docFooterLink">Documentation</a>
             </div>
             <div class="footer-section">
-                <h3>Support</h3>
-                <a href="#"><i class="ph ph-shield-check"></i> Confidentialité</a>
+                <h3>Légal</h3>
+                <a href="#" id="confLink"><i class="ph ph-shield-check"></i> Confidentialité</a>
                 <a href="#"><i class="ph ph-info"></i> Mentions légales</a>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 4rem; opacity: 0.5; font-size: 0.8rem;">
-            &copy; 2026 SEYRIN DIGITAL AGENCY. Tous droits réservés.
+        <div style="text-align: center; margin-top: 3rem; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem;">
+            &copy; 2026 Seyrin Agency. Tous droits réservés.
         </div>
     </footer>
 
     <div id="documentationModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h2><i class="ph ph-stack"></i> Stack & Documentation</h2>
+                <h2><i class="ph ph-books"></i> Documentation Projet</h2>
                 <button class="close-modal" onclick="closeModalById('documentationModal')"><i class="ph ph-x"></i></button>
             </div>
-            
-            <h3>Notre écosystème technique</h3>
-            <div class="stack-grid">
-                <div class="stack-item">
-                    <i class="ph ph-layout"></i>
-                    <span>Frontend<br>HTML5 / CSS3 / JS</span>
+            <div class="modal-body">
+                <p><i class="ph ph-info"></i> <strong>Projet Hackathon BTS SIO — Version 1.0 — 2025/2026</strong></p>
+                
+                <h3><i class="ph ph-hand-waving"></i> Présentation</h3>
+                <p>L'équipe Seyrin a constitué une entreprise fictive pour mettre en œuvre le référentiel E5 : infrastructure, site vitrine, GLPI et Cloud Azure.</p>
+
+                <h3><i class="ph ph-cpu"></i> Stack technique</h3>
+                <div class="stack-grid">
+                    <div class="stack-item"><i class="ph ph-layout"></i><span>HTML/CSS/JS</span></div>
+                    <div class="stack-item"><i class="ph ph-microsoft-azure-logo"></i><span>Azure VM</span></div>
+                    <div class="stack-item"><i class="ph ph-database"></i><span>MySQL</span></div>
+                    <div class="stack-item"><i class="ph ph-gear"></i><span>GLPI 10</span></div>
+                    <div class="stack-item"><i class="ph ph-shield-checkered"></i><span>Let's Encrypt</span></div>
                 </div>
-                <div class="stack-item">
-                    <i class="ph ph-terminal-window"></i>
-                    <span>Backend<br>Node.js / PHP</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-database"></i>
-                    <span>Database<br>MySQL / Azure SQL</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-microsoft-azure-logo"></i>
-                    <span>Cloud<br>Microsoft Azure</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-shield-checkered"></i>
-                    <span>Security<br>SSL / Certbot</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-gear"></i>
-                    <span>ITSM<br>GLPI 10.0</span>
+
+                <h3><i class="ph ph-check-square-offset"></i> Compétences</h3>
+                <p><span class="ctag">C1</span> Déploiement agent GLPI et gestion du parc informatique.</p>
+                <p><span class="ctag">C4</span> Tests d'intégrité et monitoring des services critiques.</p>
+                <p><span class="ctag">C5</span> Sauvegardes et migration vers Azure.</p>
+                <div class="doc-block">
+                    <i class="ph ph-terminal-window"></i> Terminal de sauvegarde
+                    <code>mysqldump -u root -p seyrin_db > backup_2026.sql</code>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <h3>Déploiement SSL</h3>
-            <p>Sécurisation des endpoints via Let's Encrypt :</p>
-            <div class="doc-block">
-                $ sudo certbot --apache -d seyrin.com<br>
-                $ systemctl reload apache2
+    <div id="modal-fra" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="ph ph-user-focus"></i> Documentation — FRA</h2>
+                <button class="close-modal" onclick="closeModalById('modal-fra')"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="member-banner" style="background:#e8f4f8">
+                    <div class="avatar-lg" style="background:linear-gradient(135deg,#1e5a6e,#50e3c2)">FR</div>
+                    <div><h3>FRA</h3><p>Développeur Seyrin</p></div>
+                </div>
+
+                <h3><span class="ctag">C11</span> Politique de confidentialité</h3>
+                <p>Rédaction conforme RGPD. Identification des données collectées et droits utilisateurs.</p>
+
+                <h3><span class="ctag">C12</span> API Métier</h3>
+                <p>Implémentation d'une API REST pour exposer les données de l'organisation.</p>
+                <div class="doc-block">
+                    <code>GET /api/v1/services</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-rayan" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="ph ph-user-focus"></i> Documentation — Rayan</h2>
+                <button class="close-modal" onclick="closeModalById('modal-rayan')"><i class="ph ph-x"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="member-banner" style="background:#fde8d0">
+                    <div class="avatar-lg" style="background:linear-gradient(135deg,#915018,#f5a623)">RA</div>
+                    <div><h3>Rayan</h3><p>Infrastructure Cloud</p></div>
+                </div>
+                <h3><span class="ctag">C17</span> Déploiement Azure</h3>
+                <p>Configuration de VM Azure, gestion du réseau (NSG) et migration de la base de données.</p>
+                <div class="doc-block">
+                    <code>mysql -u root -p seyrin_azure < backup.sql</code>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
-        // Progress Bar
-        window.onscroll = function() {
+        // Progress Bar & Scroll Animation
+        window.addEventListener('scroll', () => {
             let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
-            
-            // Cards Animation
+
             document.querySelectorAll('.card').forEach(card => {
-                let top = card.getBoundingClientRect().top;
-                if (top < window.innerHeight * 0.8) card.classList.add('visible');
+                if (card.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                    card.classList.add('visible');
+                }
             });
-        };
+        });
 
-        // Modal Logic
-        const docBtn = document.getElementById('docNavBtn');
-        const docModal = document.getElementById('documentationModal');
-
-        docBtn.onclick = (e) => {
-            e.preventDefault();
-            docModal.classList.add('active');
+        // Modals Management
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
             document.body.style.overflow = 'hidden';
-        };
+        }
 
         function closeModalById(id) {
             document.getElementById(id).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
+        document.getElementById('docNavBtn').onclick = (e) => { e.preventDefault(); openModal('documentationModal'); };
+        document.getElementById('docFooterLink').onclick = (e) => { e.preventDefault(); openModal('documentationModal'); };
+        
         function openMemberDoc(member) {
-            // Ici vous pouvez ouvrir une modal spécifique par membre
-            alert("Ouverture de la documentation détaillée pour : " + member.toUpperCase());
+            openModal('modal-' + member);
         }
 
-        // Close on click outside
-        window.onclick = (event) => {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('active');
+        // Close on escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                document.querySelectorAll('.modal').forEach(m => m.classList.remove('active'));
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Click outside to close
+        window.onclick = (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
         };
