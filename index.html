@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./image.png" />
     <link rel="icon" type="image/png" href="./image.png" />
     <style>
       * {
@@ -236,7 +235,7 @@
         }
       }
 
-      /* Modal */
+      /* Modal Base */
       .modal {
         display: none;
         position: fixed;
@@ -261,6 +260,7 @@
         padding: 3rem;
         max-width: 800px;
         max-height: 80vh;
+        width: 90%;
         overflow-y: auto;
         position: relative;
         animation: slideUp 0.4s ease;
@@ -342,12 +342,8 @@
       }
 
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
 
       @keyframes slideUp {
@@ -362,41 +358,19 @@
       }
 
       @media (max-width: 768px) {
-        .hero h1 {
-          font-size: 2.5rem;
-        }
-
-        .hero-content {
-          font-size: 1.1rem;
-        }
-
-        nav {
-          gap: 1rem;
-        }
-
-        .card {
-          margin: 4rem auto;
-          padding: 2rem;
-        }
-
-        .modal-content {
-          margin: 1rem;
-          padding: 2rem;
-          max-height: 90vh;
-        }
-
-        .modal-header h2 {
-          font-size: 1.5rem;
-        }
+        .hero h1 { font-size: 2.5rem; }
+        .hero-content { font-size: 1.1rem; }
+        nav { gap: 1rem; }
+        .card { margin: 4rem auto; padding: 2rem; }
+        .modal-content { padding: 2rem; }
+        .modal-header h2 { font-size: 1.5rem; }
       }
     </style>
     <title>Seyrin - Agence Numérique</title>
   </head>
   <body>
-    <!-- Barre de progression -->
     <div class="progress-bar" id="progressBar"></div>
 
-    <!-- Header -->
     <header>
       <div class="logo-container">
         <div class="logo"><img src="./image.png" alt="Logo Seyrin" /></div>
@@ -406,11 +380,10 @@
         <a href="#accueil">Accueil</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
-        <a href="#documentation">Documentation</a>
+        <a href="#" id="docLink">Documentation</a>
       </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="accueil">
       <h1>Bienvenue chez Seyrin</h1>
       <div class="hero-content">
@@ -431,17 +404,13 @@
       </div>
     </section>
 
-    <!-- Cards Section -->
     <section class="cards-section" id="services">
       <div class="card slide-right" data-animation="slide-right">
         <div class="card-icon">💼</div>
         <h2>Conseil Stratégique</h2>
         <p>
           Nous accompagnons nos clients dans leur transformation digitale en
-          proposant des solutions innovantes et adaptées à leurs besoins. Notre
-          expertise en conseil stratégique vous permet de prendre les meilleures
-          décisions pour votre entreprise et d'optimiser vos processus métier
-          pour une efficacité maximale.
+          proposant des solutions innovantes et adaptées à leurs besoins.
         </p>
       </div>
 
@@ -450,10 +419,7 @@
         <h2>Développement Web & Mobile</h2>
         <p>
           Notre équipe de développeurs passionnés crée des applications web et
-          mobiles performantes, intuitives et évolutives. Nous utilisons les
-          dernières technologies pour construire des solutions robustes qui
-          répondent aux exigences du marché moderne et offrent une expérience
-          utilisateur exceptionnelle.
+          mobiles performantes, intuitives et évolutives.
         </p>
       </div>
 
@@ -462,15 +428,11 @@
         <h2>Solutions SaaS</h2>
         <p>
           Nous concevons et déployons des solutions SaaS personnalisées qui
-          permettent à votre entreprise de se développer efficacement. Notre
-          approche cloud-native garantit scalabilité, sécurité et performance
-          pour accompagner votre croissance sur le long terme avec des outils
-          adaptés à vos besoins spécifiques.
+          permettent à votre entreprise de se développer efficacement.
         </p>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact">
       <div class="footer-content">
         <div class="footer-section">
@@ -484,16 +446,12 @@
           <a href="#accueil">Accueil</a>
           <a href="#services">Services</a>
           <a href="#contact">Contact</a>
-          <a href="#documentation">Documentation</a>
+          <a href="#" id="docLinkFooter">Documentation</a>
         </div>
 
         <div class="footer-section">
           <h3>Notre équipe</h3>
-          <a
-            href="https://seyrinwebsite.infinityfreeapp.com/index.php?i=1"
-            class="team-button"
-            target="_blank"
-          >
+          <a href="https://seyrinwebsite.infinityfreeapp.com/index.php?i=1" class="team-button" target="_blank">
             Voir notre équipe dynamique
           </a>
         </div>
@@ -502,7 +460,6 @@
           <h3>Informations légales</h3>
           <a href="#" id="confidentialiteLink">Confidentialité</a>
           <a href="#mentions">Mentions légales</a>
-          <a href="#aide">Besoin d'aide ?</a>
         </div>
       </div>
 
@@ -511,7 +468,6 @@
       </div>
     </footer>
 
-    <!-- Modal Confidentialité -->
     <div id="confidentialiteModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -520,79 +476,43 @@
         </div>
         <div class="modal-body">
           <p><strong>Dernière mise à jour : Décembre 2025</strong></p>
-
           <h3>1. Introduction</h3>
-          <p>
-            Chez Seyrin, nous prenons très au sérieux la protection de vos
-            données personnelles. Cette politique de confidentialité vous
-            informe sur la manière dont nous collectons, utilisons et protégeons
-            vos informations.
-          </p>
-
+          <p>Chez Seyrin, nous prenons très au sérieux la protection de vos données personnelles.</p>
           <h3>2. Données collectées</h3>
-          <p>Nous pouvons collecter les types de données suivants :</p>
           <ul>
-            <li>Informations d'identification (nom, prénom, email)</li>
-            <li>Données de connexion et d'utilisation</li>
-            <li>Informations techniques (adresse IP, type de navigateur)</li>
-            <li>Données de communication avec nos services</li>
+            <li>Informations d'identification</li>
+            <li>Données de connexion</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="docModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>📚 Documentation Seyrin</h2>
+          <button class="close-modal" id="closeDoc">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h3>Bienvenue</h3>
+          <p>Retrouvez ici toutes les informations nécessaires pour utiliser nos services numériques.</p>
+          
+          <h3>1. Services Web & Mobile</h3>
+          <p>Nos applications sont livrées avec une interface d'administration simplifiée. Pour y accéder :</p>
+          <ul>
+            <li>Connectez-vous via l'URL transmise lors de la livraison.</li>
+            <li>Utilisez vos identifiants sécurisés.</li>
           </ul>
 
-          <h3>3. Utilisation des données</h3>
-          <p>Vos données sont utilisées pour :</p>
+          <h3>2. Support Technique</h3>
+          <p>En cas de besoin, notre équipe est disponible :</p>
           <ul>
-            <li>Fournir et améliorer nos services</li>
-            <li>Personnaliser votre expérience utilisateur</li>
-            <li>Communiquer avec vous concernant nos services</li>
-            <li>Assurer la sécurité de notre plateforme</li>
-            <li>Respecter nos obligations légales</li>
+            <li><strong>Email :</strong> support@seyrin.com</li>
+            <li><strong>Disponibilité :</strong> Lun-Ven, 9h-18h</li>
           </ul>
-
-          <h3>4. Protection des données</h3>
-          <p>
-            Nous mettons en œuvre des mesures de sécurité techniques et
-            organisationnelles appropriées pour protéger vos données contre tout
-            accès non autorisé, modification, divulgation ou destruction.
-          </p>
-
-          <h3>5. Vos droits</h3>
-          <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-          <ul>
-            <li>Droit d'accès à vos données personnelles</li>
-            <li>Droit de rectification de vos données</li>
-            <li>Droit à l'effacement (droit à l'oubli)</li>
-            <li>Droit à la limitation du traitement</li>
-            <li>Droit à la portabilité de vos données</li>
-            <li>Droit d'opposition au traitement</li>
-          </ul>
-
-          <h3>6. Cookies</h3>
-          <p>
-            Notre site utilise des cookies pour améliorer votre expérience. Vous
-            pouvez gérer vos préférences de cookies dans les paramètres de votre
-            navigateur.
-          </p>
-
-          <h3>7. Partage des données</h3>
-          <p>
-            Nous ne vendons pas vos données personnelles. Nous pouvons les
-            partager uniquement avec des prestataires de services de confiance
-            qui nous aident à exploiter notre site et nos services, sous réserve
-            qu'ils acceptent de garder ces informations confidentielles.
-          </p>
-
-          <h3>8. Contact</h3>
-          <p>
-            Pour toute question concernant cette politique de confidentialité ou
-            pour exercer vos droits, contactez-nous à :
-            <strong>contact@seyrin.com</strong>
-          </p>
         </div>
         <div class="modal-footer">
-          <p>
-            En utilisant nos services, vous acceptez cette politique de
-            confidentialité.
-          </p>
+          <p>Documentation mise à jour en Avril 2026</p>
         </div>
       </div>
     </div>
@@ -602,94 +522,83 @@
       function updateProgressBar() {
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        const scrollPercent =
-          (scrollTop / (documentHeight - windowHeight)) * 100;
-        document.getElementById("progressBar").style.width =
-          scrollPercent + "%";
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercent = (scrollTop / (documentHeight - windowHeight)) * 100;
+        document.getElementById("progressBar").style.width = scrollPercent + "%";
       }
 
       // Animation des cartes au scroll
       function animateCards() {
         const cards = document.querySelectorAll(".card");
-
         cards.forEach((card) => {
           const cardTop = card.getBoundingClientRect().top;
-          const windowHeight = window.innerHeight;
-
-          if (cardTop < windowHeight * 0.8) {
+          if (cardTop < window.innerHeight * 0.8) {
             card.classList.add("visible");
           }
         });
       }
 
-      // Modal Confidentialité
-      const modal = document.getElementById("confidentialiteModal");
-      const confidentialiteLink = document.getElementById(
-        "confidentialiteLink"
-      );
-      const closeModal = document.getElementById("closeModal");
+      // Logique des Modales
+      function setupModal(modalId, linkId, closeId) {
+        const modal = document.getElementById(modalId);
+        const link = document.getElementById(linkId);
+        const close = document.getElementById(closeId);
 
-      // Ouvrir la modal
-      confidentialiteLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        modal.classList.add("active");
-        document.body.style.overflow = "hidden"; // Empêcher le scroll
-      });
+        if(!link || !modal) return;
 
-      // Fermer la modal avec le bouton
-      closeModal.addEventListener("click", () => {
-        modal.classList.remove("active");
-        document.body.style.overflow = "auto"; // Réactiver le scroll
-      });
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          modal.classList.add("active");
+          document.body.style.overflow = "hidden";
+        });
 
-      // Fermer la modal en cliquant en dehors
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) {
+        close.addEventListener("click", () => {
           modal.classList.remove("active");
           document.body.style.overflow = "auto";
-        }
-      });
+        });
 
-      // Fermer la modal avec la touche Échap
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && modal.classList.contains("active")) {
-          modal.classList.remove("active");
-          document.body.style.overflow = "auto";
-        }
-      });
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) {
+            modal.classList.remove("active");
+            document.body.style.overflow = "auto";
+          }
+        });
+      }
 
-      // Event listeners
+      // Initialisation des modales
+      setupModal("confidentialiteModal", "confidentialiteLink", "closeModal");
+      setupModal("docModal", "docLink", "closeDoc");
+      setupModal("docModal", "docLinkFooter", "closeDoc"); // Lien footer aussi
+
+      // Event listeners généraux
       window.addEventListener("scroll", () => {
         updateProgressBar();
         animateCards();
       });
 
-      // Initial check
       window.addEventListener("load", () => {
         updateProgressBar();
         animateCards();
       });
 
-      // Smooth scroll pour les liens
+      // Fermeture globale avec Echap
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          document.querySelectorAll('.modal').forEach(m => m.classList.remove("active"));
+          document.body.style.overflow = "auto";
+        }
+      });
+
+      // Smooth scroll pour les ancres
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         anchor.addEventListener("click", function (e) {
           const href = this.getAttribute("href");
-          // Ne pas empêcher le comportement par défaut pour les liens qui ouvrent la modal
-          if (
-            href === "#confidentialite" ||
-            this.id === "confidentialiteLink"
-          ) {
-            return;
-          }
+          if (href === "#" || href.includes("Link")) return;
+          
           e.preventDefault();
           const target = document.querySelector(href);
           if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
           }
         });
       });
