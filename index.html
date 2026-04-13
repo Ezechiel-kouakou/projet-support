@@ -18,7 +18,7 @@
         .progress-bar {
             position: fixed; top: 0; left: 0; width: 0%; height: 4px;
             background: linear-gradient(90deg, #50e3c2, #015469);
-            z-index: 1001; transition: width 0.1s ease;
+            z-index: 2001; transition: width 0.1s ease;
         }
 
         header {
@@ -28,107 +28,59 @@
             padding: 1rem 2rem;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-top: 4px;
         }
 
         .logo-container { display: flex; align-items: center; gap: 1rem; }
         .logo img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #50e3c2; }
-        .logo-text { color: white; font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; }
+        .logo-text { color: white; font-size: 1.6rem; font-weight: 800; }
 
         nav { display: flex; gap: 1.5rem; align-items: center; }
-        nav a { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: 0.3s; display: flex; align-items: center; gap: 0.4rem; }
+        nav a { color: white; text-decoration: none; font-size: 0.95rem; transition: 0.3s; display: flex; align-items: center; gap: 0.4rem; }
         nav a:hover { color: #50e3c2; }
 
         .doc-nav-btn {
             background: #50e3c2; color: #015469 !important;
             padding: 0.6rem 1.2rem; border-radius: 12px;
-            font-weight: 700; cursor: pointer; transition: 0.3s;
+            font-weight: 700; cursor: pointer; text-decoration: none;
         }
-        .doc-nav-btn:hover { transform: scale(1.05); background: white; }
 
-        /* --- Hero --- */
-        .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center;
-            text-align: center; padding: 4rem 2rem; color: white;
-        }
-        .hero h1 { font-size: 4rem; margin-bottom: 1.5rem; letter-spacing: -2px; }
-        .hero-content { max-width: 700px; font-size: 1.2rem; opacity: 0.9; line-height: 1.6; }
-        .hero-cta { margin-top: 3rem; display: flex; align-items: center; gap: 10px; font-weight: 500; }
-        .hero-cta i { font-size: 1.5rem; animation: bounce 2s infinite; }
-
-        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-10px);} 60% {transform: translateY(-5px);} }
-
-        /* --- Cards --- */
+        /* --- Hero & Cards --- */
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 4rem 2rem; color: white; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1.5rem; }
         .cards-section { padding: 4rem 2rem; }
-        .card {
-            max-width: 800px; margin: 6rem auto; background: white;
-            border-radius: 24px; padding: 3.5rem;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
-            opacity: 0; transition: 1s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .card.slide-left { transform: translateX(80px); }
-        .card.slide-right { transform: translateX(-80px); }
-        .card.visible { opacity: 1; transform: translateX(0); }
-        .card i { font-size: 3.5rem; color: #015469; margin-bottom: 1.5rem; display: block; }
-        .card h2 { color: #015469; font-size: 2.2rem; margin-bottom: 1rem; }
-        .card p { color: #666; font-size: 1.1rem; line-height: 1.7; }
+        .card { max-width: 850px; margin: 6rem auto; background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 20px 50px rgba(0,0,0,0.3); opacity: 0; transition: 1s; }
+        .card.visible { opacity: 1; transform: translateY(0); }
+        .card i.main-icon { font-size: 3.5rem; color: #015469; margin-bottom: 1rem; display: block; }
 
         /* --- Team --- */
-        .team-section { padding: 6rem 2rem; background: rgba(255,255,255,0.05); }
-        .team-section-title { text-align: center; color: white; font-size: 3rem; margin-bottom: 4rem; }
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto; }
-        .team-card { background: white; border-radius: 24px; padding: 2.5rem; text-align: center; transition: 0.4s; position: relative; overflow: hidden; }
-        .team-card:hover { transform: translateY(-10px); }
-        .team-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 800; color: white; }
-        .team-name { font-size: 1.4rem; font-weight: 700; color: #015469; }
-        .team-role { display: inline-block; font-size: 0.85rem; padding: 0.4rem 1rem; border-radius: 50px; margin: 0.5rem 0 1.5rem; font-weight: 600; }
-        .role-dev { background: #e0f2fe; color: #0369a1; }
-        .role-infra { background: #fef3c7; color: #92400e; }
-        .role-support { background: #f3e8ff; color: #6b21a8; }
-        .role-chef { background: #dcfce7; color: #166534; }
-        .task-list { text-align: left; margin-bottom: 2rem; }
-        .task-list li { list-style: none; font-size: 0.9rem; color: #555; margin-bottom: 0.6rem; display: flex; gap: 8px; align-items: center; }
-        .task-list li i { color: #50e3c2; font-size: 1.1rem; }
+        .team-section { padding: 5rem 2rem; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+        .team-card { background: white; border-radius: 20px; padding: 2rem; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .team-avatar { width: 70px; height: 70px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: white; }
+        .voir-doc-btn { background: #015469; color: white; border: none; padding: 0.7rem; border-radius: 10px; width: 100%; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 1rem; }
 
-        .voir-doc-btn { 
-            background: #015469; color: white; border: none; padding: 0.8rem; 
-            border-radius: 12px; width: 100%; cursor: pointer; font-weight: 600; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s;
-        }
-        .voir-doc-btn:hover { background: #0282a1; }
-
-        /* --- Modals & Documentation --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        /* --- Modals --- */
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
         .modal.active { display: flex; justify-content: center; align-items: center; }
-        .modal-content { background: #f8fafc; border-radius: 30px; width: 90%; max-width: 900px; max-height: 85vh; overflow-y: auto; padding: 3rem; position: relative; }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 1.5rem; margin-bottom: 2rem; }
-        .modal-header h2 { display: flex; align-items: center; gap: 12px; color: #015469; }
-        .close-modal { background: #f1f5f9; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+        .modal-content { background: white; border-radius: 25px; width: 90%; max-width: 850px; max-height: 85vh; overflow-y: auto; padding: 2.5rem; position: relative; }
+        .close-modal { position: absolute; top: 20px; right: 20px; border: none; background: #f1f5f9; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
 
-        /* Stack Grid */
-        .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-        .stack-item { background: white; padding: 1.5rem; border-radius: 16px; border: 1px solid #e2e8f0; text-align: center; }
-        .stack-item i { font-size: 2.5rem; color: #015469; margin-bottom: 0.8rem; display: block; }
-        .stack-item span { font-weight: 700; font-size: 0.9rem; color: #334155; }
+        /* Documentation Design */
+        .doc-header { border-bottom: 2px solid #e2e8f0; margin-bottom: 2rem; padding-bottom: 1rem; }
+        .doc-section { margin-bottom: 2rem; }
+        .doc-section h3 { color: #015469; display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; border-left: 4px solid #50e3c2; padding-left: 15px; }
+        .ctag { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 5px; font-weight: bold; font-size: 0.8rem; }
+        .doc-block { background: #f8fafc; padding: 1.2rem; border-radius: 12px; font-family: monospace; font-size: 0.9rem; border: 1px solid #e2e8f0; margin-top: 10px; }
+        .conclusion { background: #f0fdf4; border: 1px solid #bbf7d0; padding: 1rem; border-radius: 12px; color: #166534; }
 
-        .doc-block { background: #015469; color: white; padding: 1.5rem; border-radius: 16px; margin: 1.5rem 0; font-family: 'Fira Code', monospace; font-size: 0.9rem; position: relative; }
-        .doc-block::before { content: "Terminal"; position: absolute; top: -10px; left: 20px; background: #50e3c2; color: #015469; padding: 2px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+        /* Stack Technique icons */
+        .stack-icons { display: flex; gap: 15px; margin: 15px 0; flex-wrap: wrap; }
+        .stack-item { background: #fff; border: 1px solid #ddd; padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; }
 
-        /* --- Footer --- */
-        footer { background: #01161d; color: white; padding: 5rem 2rem 2rem; }
-        .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4rem; }
-        .footer-section h3 { font-size: 1.4rem; margin-bottom: 1.5rem; color: #50e3c2; }
-        .footer-section a { color: #cbd5e1; text-decoration: none; display: block; margin-bottom: 0.8rem; transition: 0.3s; }
-        .footer-section a:hover { color: white; padding-left: 5px; }
-
-        @media (max-width: 768px) {
-            header { padding: 1rem; }
-            .logo-text { display: none; }
-            .hero h1 { font-size: 2.5rem; }
-            .modal-content { padding: 1.5rem; }
-        }
+        footer { background: #01161d; color: white; padding: 4rem 2rem; text-align: center; }
     </style>
-    <title>Seyrin | Agence Numérique</title>
+    <title>Seyrin - Documentation Hackathon</title>
 </head>
 <body>
     <div class="progress-bar" id="progressBar"></div>
@@ -136,139 +88,223 @@
     <header>
         <div class="logo-container">
             <div class="logo"><img src="./image.png" alt="Logo" /></div>
-            <div class="logo-text">SEYRIN</div>
+            <div class="logo-text">Seyrin</div>
         </div>
         <nav>
             <a href="#accueil"><i class="ph ph-house"></i> Accueil</a>
-            <a href="#services"><i class="ph ph-cube"></i> Services</a>
-            <a href="#equipe"><i class="ph ph-users"></i> Équipe</a>
-            <a href="#" class="doc-nav-btn" id="docNavBtn"><i class="ph ph-file-text"></i> Documentation</a>
+            <a href="#equipe"><i class="ph ph-users-three"></i> Équipe</a>
+            <a href="#" class="doc-nav-btn" onclick="openModal('modal-general')"><i class="ph ph-books"></i> Doc Générale</a>
         </nav>
     </header>
 
     <section class="hero" id="accueil">
-        <h1>Innover pour demain.</h1>
-        <div class="hero-content">
-            <p><strong>Seyrin</strong> est votre partenaire numérique spécialisé en conseil stratégique et déploiement de solutions SaaS haute performance.</p>
-        </div>
-        <div class="hero-cta">
-            <i class="ph ph-mouse"></i> Scrollez pour explorer
-        </div>
-    </section>
-
-    <section class="cards-section" id="services">
-        <div class="card slide-right">
-            <i class="ph ph-chart-line-up"></i>
-            <h2>Conseil Stratégique</h2>
-            <p>Nous transformons vos défis en opportunités numériques grâce à un accompagnement sur mesure et une expertise métier pointue.</p>
-        </div>
-        <div class="card slide-left">
-            <i class="ph ph-code"></i>
-            <h2>Développement Web & Mobile</h2>
-            <p>Conception d'interfaces modernes et performantes utilisant les stacks les plus robustes du marché (Node.js, React, Swift).</p>
-        </div>
-        <div class="card slide-right">
-            <i class="ph ph-cloud-arrow-up"></i>
-            <h2>Solutions SaaS</h2>
-            <p>Déploiement d'architectures cloud-native scalables sur Azure et AWS pour garantir une disponibilité maximale de vos services.</p>
-        </div>
+        <h1>Seyrin Agency</h1>
+        <p>Projet Hackathon BTS SIO 2025-2026</p>
     </section>
 
     <section class="team-section" id="equipe">
-        <h2 class="team-section-title">Notre Équipe</h2>
         <div class="team-grid">
             <div class="team-card">
-                <div class="team-avatar" style="background: linear-gradient(135deg, #015469, #50e3c2)">FR</div>
-                <div class="team-name">FRA</div>
-                <span class="team-role role-dev">Lead Developer</span>
-                <ul class="task-list">
-                    <li><i class="ph ph-check-circle"></i> Politique RGPD</li>
-                    <li><i class="ph ph-check-circle"></i> Architecture API</li>
-                    <li><i class="ph ph-check-circle"></i> Intégrité Serveur</li>
-                </ul>
-                <button class="voir-doc-btn" onclick="openMemberDoc('fra')"><i class="ph ph-book-open"></i> Portfolio Technique</button>
+                <div class="team-avatar" style="background: #1e5a6e;">FR</div>
+                <h3>FRA</h3>
+                <p>Développeur</p>
+                <button class="voir-doc-btn" onclick="openModal('modal-fra')"><i class="ph ph-file-text"></i> Voir docu</button>
             </div>
 
             <div class="team-card">
-                <div class="team-avatar" style="background: linear-gradient(135deg, #166534, #50e3c2)">KO</div>
-                <div class="team-name">Kouakou</div>
-                <span class="team-role role-chef">Chef de Projet</span>
-                <ul class="task-list">
-                    <li><i class="ph ph-check-circle"></i> Migration Cloud Azure</li>
-                    <li><i class="ph ph-check-circle"></i> Stratégie SEO</li>
-                    <li><i class="ph ph-check-circle"></i> Gestion Sauvegardes</li>
-                </ul>
-                <button class="voir-doc-btn" onclick="openMemberDoc('kouakou')"><i class="ph ph-book-open"></i> Roadmap Projet</button>
+                <div class="team-avatar" style="background: #915018;">RA</div>
+                <h3>Rayan</h3>
+                <p>Infrastructure</p>
+                <button class="voir-doc-btn" onclick="openModal('modal-rayan')"><i class="ph ph-file-text"></i> Voir docu</button>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar" style="background: #4a35b0;">KG</div>
+                <h3>Kylian Gabriel</h3>
+                <p>Support</p>
+                <button class="voir-doc-btn" onclick="openModal('modal-kylian')"><i class="ph ph-file-text"></i> Voir docu</button>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar" style="background: #0d6e4b;">KO</div>
+                <h3>Kouakou</h3>
+                <p>Chef de Projet</p>
+                <button class="voir-doc-btn" onclick="openModal('modal-kouakou')"><i class="ph ph-file-text"></i> Voir docu</button>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar" style="background: #c47cf0;">FI</div>
+                <h3>Firadous</h3>
+                <p>Support</p>
+                <button class="voir-doc-btn" onclick="openModal('modal-firadous')"><i class="ph ph-file-text"></i> Voir docu</button>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>Seyrin</h3>
-                <p>Expertise numérique & Transformation Cloud.</p>
-            </div>
-            <div class="footer-section">
-                <h3>Navigation</h3>
-                <a href="#accueil">Accueil</a>
-                <a href="#services">Services</a>
-                <a href="#equipe">L'équipe</a>
-            </div>
-            <div class="footer-section">
-                <h3>Support</h3>
-                <a href="#"><i class="ph ph-shield-check"></i> Confidentialité</a>
-                <a href="#"><i class="ph ph-info"></i> Mentions légales</a>
-            </div>
-        </div>
-        <div style="text-align: center; margin-top: 4rem; opacity: 0.5; font-size: 0.8rem;">
-            &copy; 2026 SEYRIN DIGITAL AGENCY. Tous droits réservés.
-        </div>
-    </footer>
-
-    <div id="documentationModal" class="modal">
+    <div id="modal-general" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h2><i class="ph ph-stack"></i> Stack & Documentation</h2>
-                <button class="close-modal" onclick="closeModalById('documentationModal')"><i class="ph ph-x"></i></button>
+            <button class="close-modal" onclick="closeModal('modal-general')"><i class="ph ph-x"></i></button>
+            <div class="doc-header">
+                <h2><i class="ph ph-bookmarks"></i> Documentation Générale Seyrin</h2>
+                <p>Hackathon BTS SIO - Référentiel E5</p>
             </div>
-            
-            <h3>Notre écosystème technique</h3>
-            <div class="stack-grid">
-                <div class="stack-item">
-                    <i class="ph ph-layout"></i>
-                    <span>Frontend<br>HTML5 / CSS3 / JS</span>
+            <div class="modal-body">
+                <div class="doc-section">
+                    <h3><i class="ph ph-info"></i> Synthèse du Projet</h3>
+                    <p>Ce projet vise à simuler la mise en service d'une agence numérique complète. Nous avons couvert l'ensemble des pôles (Développement, Infrastructure, Support et Pilotage).</p>
+                    <div class="stack-icons">
+                        <div class="stack-item"><i class="ph ph-microsoft-azure-logo"></i> Azure</div>
+                        <div class="stack-item"><i class="ph ph-database"></i> MySQL</div>
+                        <div class="stack-item"><i class="ph ph-gear"></i> GLPI</div>
+                        <div class="stack-item"><i class="ph ph-layout"></i> HTML5/CSS3</div>
+                    </div>
                 </div>
-                <div class="stack-item">
-                    <i class="ph ph-terminal-window"></i>
-                    <span>Backend<br>Node.js / PHP</span>
+                <div class="doc-section">
+                    <h3><i class="ph ph-check-circle"></i> Compétences Globales</h3>
+                    <ul>
+                        <li><span class="ctag">C1</span> Recensement parc via GLPI Agent.</li>
+                        <li><span class="ctag">C5</span> Gestion des sauvegardes et migration vers le Cloud Azure.</li>
+                        <li><span class="ctag">C12</span> Évolution agile du site vitrine et intégration d'API.</li>
+                        <li><span class="ctag">C17</span> Déploiement et sécurisation via HTTPS (Let's Encrypt).</li>
+                    </ul>
                 </div>
-                <div class="stack-item">
-                    <i class="ph ph-database"></i>
-                    <span>Database<br>MySQL / Azure SQL</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-microsoft-azure-logo"></i>
-                    <span>Cloud<br>Microsoft Azure</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-shield-checkered"></i>
-                    <span>Security<br>SSL / Certbot</span>
-                </div>
-                <div class="stack-item">
-                    <i class="ph ph-gear"></i>
-                    <span>ITSM<br>GLPI 10.0</span>
-                </div>
-            </div>
-
-            <h3>Déploiement SSL</h3>
-            <p>Sécurisation des endpoints via Let's Encrypt :</p>
-            <div class="doc-block">
-                $ sudo certbot --apache -d seyrin.com<br>
-                $ systemctl reload apache2
             </div>
         </div>
     </div>
+
+    <div id="modal-fra" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-fra')"><i class="ph ph-x"></i></button>
+            <div class="doc-header">
+                <h2>Réalisation : Développement & Sécurisation</h2>
+                <p><strong>C12, C11, C4, C17</strong> | Membre : FRA</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-briefcase"></i> Contexte</h3>
+                <p>Dans le cadre du projet Seyrin, j'ai été chargé de transformer le site vitrine en une plateforme dynamique et sécurisée respectant le RGPD.</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-list-numbers"></i> Démarche suivie</h3>
+                <p>1. <strong>RGPD :</strong> Rédaction de la politique de confidentialité (C11).<br>
+                   2. <strong>Développement :</strong> Création d'API REST pour l'interopérabilité des données (C12).<br>
+                   3. <strong>Sécurité :</strong> Configuration du nom de domaine et déploiement sur Alwaysdata.</p>
+                <div class="doc-block">
+                    // Exemple API Endpoint<br>
+                    GET /api/v1/seyrin/services
+                </div>
+            </div>
+            <div class="doc-section conclusion">
+                <p><strong>Conclusion :</strong> Cette mission m'a permis d'approfondir la gestion des conformités légales et le cycle de vie d'une API.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-rayan" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-rayan')"><i class="ph ph-x"></i></button>
+            <div class="doc-header">
+                <h2>Réalisation : Infrastructure Cloud & GLPI</h2>
+                <p><strong>C18, C5, C17</strong> | Membre : Rayan</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-briefcase"></i> Contexte</h3>
+                <p>Responsable de la mise en place de l'infrastructure de support et de la migration vers le Cloud Azure.</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-list-numbers"></i> Démarche suivie</h3>
+                <p>1. <strong>Azure :</strong> Déploiement d'une VM Linux sous Azure (C17).<br>
+                   2. <strong>Sauvegarde :</strong> Migration des bases de données MySQL vers le nouveau serveur cloud (C5).<br>
+                   3. <strong>Support :</strong> Gestion des utilisateurs et droits sur l'outil GLPI (C18).</p>
+                <div class="doc-block">
+                    mysqldump -u root -p db_local > backup.sql<br>
+                    mysql -h azure_host -u root -p db_remote < backup.sql
+                </div>
+            </div>
+            <div class="doc-section conclusion">
+                <p><strong>Conclusion :</strong> Maîtrise des environnements Cloud public et de la continuité de service lors d'une migration.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-kylian" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-kylian')"><i class="ph ph-x"></i></button>
+            <div class="doc-header">
+                <h2>Réalisation : Recensement & Analyse d'audience</h2>
+                <p><strong>C1, C11, C17</strong> | Membre : Kylian Gabriel</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-briefcase"></i> Contexte</h3>
+                <p>Mise en place du suivi de performance du site et inventaire du parc informatique de l'agence.</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-list-numbers"></i> Démarche suivie</h3>
+                <p>1. <strong>Inventaire :</strong> Installation et configuration des agents GLPI sur les postes de l'équipe (C1).<br>
+                   2. <strong>Analytics :</strong> Intégration du tag Google Analytics pour mesurer la visibilité (C11).<br>
+                   3. <strong>Azure :</strong> Participation au déploiement des services web (C17).</p>
+                <div class="doc-block">
+                    sudo apt install glpi-agent<br>
+                    glpi-agent --server http://glpi.seyrin.com
+                </div>
+            </div>
+            <div class="doc-section conclusion">
+                <p><strong>Conclusion :</strong> J'ai appris à automatiser la remontée d'informations matérielles et à exploiter des indicateurs de visibilité.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-kouakou" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-kouakou')"><i class="ph ph-x"></i></button>
+            <div class="doc-header">
+                <h2>Réalisation : Pilotage & Continuité</h2>
+                <p><strong>C12, C4, C5, C17</strong> | Membre : Kouakou</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-briefcase"></i> Contexte</h3>
+                <p>En tant que Chef de Projet, j'ai assuré la coordination technique et la pérennité des données.</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-list-numbers"></i> Démarche suivie</h3>
+                <p>1. <strong>Gestion :</strong> Création et évolution de la page vitrine responsive (C12).<br>
+                   2. <strong>Sécurité :</strong> Mise en place de certificats SSL avec Certbot/Let's Encrypt (C17).<br>
+                   3. <strong>Fiabilité :</strong> Vérification périodique des sauvegardes et tests d'intégrité (C4).</p>
+                <div class="doc-block">
+                    sudo certbot --apache -d seyrinwebsite.com
+                </div>
+            </div>
+            <div class="doc-section conclusion">
+                <p><strong>Conclusion :</strong> Cette expérience a renforcé ma capacité à superviser un projet technique complexe de bout en bout.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-firadous" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal('modal-firadous')"><i class="ph ph-x"></i></button>
+            <div class="doc-header">
+                <h2>Réalisation : Support & Maintenance</h2>
+                <p><strong>C1, C12, C17</strong> | Membre : Firadous</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-briefcase"></i> Contexte</h3>
+                <p>Soutien au pôle support et participation active à l'amélioration de l'expérience utilisateur du site.</p>
+            </div>
+            <div class="doc-section">
+                <h3><i class="ph ph-list-numbers"></i> Démarche suivie</h3>
+                <p>1. <strong>GLPI :</strong> Déploiement des agents et attribution des rôles utilisateurs (C1).<br>
+                   2. <strong>Web :</strong> Intégration de nouveaux composants UI/UX sur le site (C12).<br>
+                   3. <strong>Cloud :</strong> Aide au déploiement de l'infrastructure sur Azure (C17).</p>
+            </div>
+            <div class="doc-section conclusion">
+                <p><strong>Conclusion :</strong> J'ai pu concilier gestion de parc et développement front-end, deux piliers du support moderne.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Seyrin - BTS SIO Hackathon. Tous droits réservés.</p>
+    </footer>
 
     <script>
         // Progress Bar
@@ -277,41 +313,28 @@
             let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
             let scrolled = (winScroll / height) * 100;
             document.getElementById("progressBar").style.width = scrolled + "%";
-            
-            // Cards Animation
-            document.querySelectorAll('.card').forEach(card => {
-                let top = card.getBoundingClientRect().top;
-                if (top < window.innerHeight * 0.8) card.classList.add('visible');
-            });
         };
 
         // Modal Logic
-        const docBtn = document.getElementById('docNavBtn');
-        const docModal = document.getElementById('documentationModal');
-
-        docBtn.onclick = (e) => {
-            e.preventDefault();
-            docModal.classList.add('active');
+        function openModal(id) {
+            document.getElementById(id).classList.add('active');
             document.body.style.overflow = 'hidden';
-        };
+        }
 
-        function closeModalById(id) {
+        function closeModal(id) {
             document.getElementById(id).classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        function openMemberDoc(member) {
-            // Ici vous pouvez ouvrir une modal spécifique par membre
-            alert("Ouverture de la documentation détaillée pour : " + member.toUpperCase());
-        }
+        // Animation on scroll
+        const cards = document.querySelectorAll('.card, .team-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) entry.target.style.opacity = 1;
+            });
+        }, { threshold: 0.1 });
 
-        // Close on click outside
-        window.onclick = (event) => {
-            if (event.target.classList.contains('modal')) {
-                event.target.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        };
+        cards.forEach(card => observer.observe(card));
     </script>
 </body>
 </html>
